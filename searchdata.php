@@ -1,20 +1,35 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>searchdata</title>
-    </head>
-    <body>
-        <script>
-           var xhttp = new XMLHttpRequest();
-           xhttp.onreadystatechange = funciton() {
-                if (this.readyState == 4 && this.status == 200) {
-                  console.log(xhttp.responseText);
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+</head>
+<body>
 
-                }
-           };
-           xhttp.open("GET", "products.json", true);
-           xhttp.send();
-        </script>
-    </body>
+<?php
+// index.php - Display data from the database
+
+// Include the database connection code
+include('db_connect.php');
+
+// SQL query to retrieve data from the 'users' table
+$sql = "SELECT stuffName, StuffBdate, stuffprice FROM stuffs";
+$result = $conn->query($sql);
+
+// Check if there are rows in the result
+if ($result->num_rows > 0) {
+    // Output data for each row
+    while($row = $result->fetch_assoc()) {
+        echo "Name: " . $row["stuffName"]. " - Name: " . $row["StuffBdate"]. " - buying date: " . $row["stuffprice"]. "<br>";
+    }
+} else {
+    echo "0 results";
+}
+
+// Close the database connection
+$conn->close();
+?>
+
+</body>
 </html>

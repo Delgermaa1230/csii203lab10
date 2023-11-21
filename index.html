@@ -28,9 +28,9 @@
     <table id="data-table">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
+                <th>stuffname</th>
+                <th>stuffbdate</th>
+                <th>price</th>
             </tr>
         </thead>
         <tbody></tbody>
@@ -45,7 +45,7 @@
 
                 data.forEach(row => {
                     const tr = document.createElement('tr');
-                    tr.innerHTML = `<td>${row.id}</td><td>${row.name}</td><td>${row.email}</td>`;
+                    tr.innerHTML = `<td>${row.StuffName}</td><td>${row.StuffBdate}</td><td>${row.price}</td>`;
                     tableBody.appendChild(tr);
                 });
             })
