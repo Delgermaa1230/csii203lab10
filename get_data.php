@@ -1,7 +1,7 @@
 <?php
 include 'db_connect.php';
 
-// Fetch data from the database
+
 $sql = "SELECT * FROM stuffs";
 $result = $conn->query($sql);
 
@@ -13,10 +13,8 @@ if ($result->num_rows > 0) {
     }
 }
 
-// Close the connection
 $conn->close();
 
-// Return JSON response
 header('Content-Type: application/json');
 echo json_encode($data);
 ?>

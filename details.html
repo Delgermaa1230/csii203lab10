@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Display</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffffff; 
+            margin: 20px;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff8c00; 
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ff8c00; 
+            font-size: 14px;
+        }
+
+      
+        .input-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        input {
+            padding: 12px;
+            margin-bottom: 16px;
+            width: 220px;
+            border: 2px solid #8c520b; 
+            border-radius: 8px; 
+            font-size: 14px;
+            outline: none; 
+        }
+
+        button {
+            padding: 14px;
+            background-color: #dba768; 
+            color: #fafafa;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #d3a079;
+        }
+
+        #displayArea {
+            margin-top: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 8px; 
+            overflow: hidden; 
+        }
+
+        th, td {
+            padding: 14px;
+            text-align: left;
+            border-bottom: 1px solid #ff8c00; 
+        }
+
+        th {
+            background-color: #9f673b; 
+            color: #fff;
+        }
+
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+
+    <h1>Data Display</h1>
+
+    <label for="stuffIdInput">Enter Stuff ID (between 1 and 101):</label>
+    <input type="number" id="stuffIdInput" min="1" max="101" />
+    <button onclick="fetchData()">Fetch Data</button>
+
+
+    <div id="displayArea"></div>
+
+    <script>
+        function fetchData() {
+            var selectedStuffId = $("#stuffIdInput").val();
+
+
+            if (isNaN(selectedStuffId)) {
+                alert("Please enter a valid number for Stuff ID.");
+                return;
+            }
+
+            if (selectedStuffId < 1 || selectedStuffId > 101) {
+                alert("Stuff ID should be between 1 and 101.");
+                return;
+            }
+
+            $.ajax({
+                url: 'details.php', 
+                type: 'GET',
+                data: { stuffid: selectedStuffId },
+                dataType: 'json',
+                success: function (data) {
+                    displayData(data);
+                },
+                error: function (error) {
+                    console.error('Error fetching data:', error);
+                }
+            });
+        }
+
+        function displayData(data) {
+            var displayArea = $('#displayArea');
+            displayArea.empty(); 
+
+            var table = '<table border="1"><tr><th>Stuff ID</th><th>Name</th><th>Buying Date</th><th>Price</th></tr>';
+
+            for (var i = 0; i < data.length; i++) {
+                table += '<tr>';
+                table += '<td>' + data[i].stuffid + '</td>';
+                table += '<td>' + data[i].stuffName + '</td>';
+                table += '<td>' + data[i].StuffBdate + '</td>';
+                table += '<td>' + data[i].stuffprice + '</td>';
+                table += '</tr>';
+            }
+
+            table += '</table>';
+            displayArea.html(table);
+        }
+    </script>
+
+</body>
+
+</html>
