@@ -1,35 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User List</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
+
 <body>
+    <h1>Demi's stuffs</h1>
+    <?php
 
-<?php
-// index.php - Display data from the database
+    include('db_connect.php');
 
-// Include the database connection code
-include('db_connect.php');
+    $sql = "SELECT stuffName, StuffBdate, stuffprice FROM stuffs";
+    $result = $conn->query($sql);
 
-// SQL query to retrieve data from the 'users' table
-$sql = "SELECT stuffName, StuffBdate, stuffprice FROM stuffs";
-$result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        echo '<table>';
+        echo '<tr>';
+        echo '<th>Name</th>';
+        echo '<th>Buying Date</th>';
+        echo '<th>Price</th>';
+        echo '</tr>';
 
-// Check if there are rows in the result
-if ($result->num_rows > 0) {
-    // Output data for each row
-    while($row = $result->fetch_assoc()) {
-        echo "Name: " . $row["stuffName"]. " - Name: " . $row["StuffBdate"]. " - buying date: " . $row["stuffprice"]. "<br>";
+        while ($row = $result->fetch_assoc()) {
+            echo '<tr>';
+            echo '<td>' . $row["stuffName"] . '</td>';
+            echo '<td>' . $row["StuffBdate"] . '</td>';
+            echo '<td>' . $row["stuffprice"] . '</td>';
+            echo '</tr>';
+        }
+
+        echo '</table>';
+    } else {
+        echo "0 results";
     }
-} else {
-    echo "0 results";
-}
 
-// Close the database connection
-$conn->close();
-?>
+    $conn->close();
+    ?>
 
 </body>
+
 </html>

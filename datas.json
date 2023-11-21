@@ -1,36 +1,7 @@
-{"stuffs": [
-    {
-        "stuffid": 45,
-        "stuffname": "the hobbit",
-        "stuffBdata": "2022-09-09",
-        "StaffEdate": "2025-09-09",
-        "staffusage": [
-            "reading",
-            "looking",
-            "keeping"
-        ]
-    },
-    {
-        "stuffid": 2,
-        "stuffname": "song of ice and fire",
-        "stuffBdata": "2022-09-09",
-        "StaffEdate": "2025-10-10",
-        "staffusage": [
-            "reading",
-            "looking",
-            "keeping"
-        ]
-    },
-    {
-        "stuffid": 3,
-        "stuffname": "fire and blood",
-        "stuffBdata": "2022-10-10",
-        "StaffEdate": "2025-10-31",
-        "staffusage": [
-            "reading",
-            "looking",
-            "keeping"
-        ]
-    }
-
-]}
+{
+    "id": 45,
+    "name": "the hobbit",
+    "bday": "2022-09-09",
+    "eday": "2025-09-09",
+    "purpose": "reading"
+}
