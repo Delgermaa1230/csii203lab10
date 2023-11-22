@@ -95,6 +95,7 @@
     <input type="number" id="stuffIdInput" min="1" max="101" />
     <button onclick="fetchData()">Сонгосон эд зүйлийг харах</button>
     <button onclick="fetchAllData()">Бүх эд зүйлсийг харах</button>
+    <button onclick="fetchBookData()">Бүх номнуудыг харах</button>
 
 
     <div id="displayArea"></div>
@@ -136,6 +137,18 @@
                 },
                 error: function (error) {
                     console.error('Бүх өгөгдөл авахад алдаа гарлаа:', error);
+                }
+            });
+        }
+
+        function fetchBookData() {
+            $.ajax({
+                url: 'fetchbookdata.php', 
+                success: function (data) {
+                    displayData(data);
+                },
+                error: function (error) {
+                    console.error('Номын өгөгдөл авахад алдаа гарлаа:', error);
                 }
             });
         }
