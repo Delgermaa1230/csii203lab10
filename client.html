@@ -126,19 +126,20 @@
                 }
             });
         }
+        
 
         function displayData(data) {
             var displayArea = $('#displayArea');
             displayArea.empty(); 
 
-            var table = '<table border="1"><tr><th>Эд зүйлийн дугаар</th><th>Эд зүйлийн нэр</th><th>Худалдаж авсан өдөр</th><th>Ашиглалтаас гарах өдөр</th><th>Үнэ</th><th>Ангилал</th></tr>';
+            var table = '<table border="1"><tr><th>Эд зүйлийн дугаар</th><th>Эд зүйлийн нэр</th><th>Худалдаж авсан өдөр</th><th>Зориулалт</th><th>Үнэ $</th><th>Ангилал</th></tr>';
 
             for (var i = 0; i < data.length; i++) {
                 table += '<tr>';
                 table += '<td>' + data[i].stuffId + '</td>';
                 table += '<td>' + data[i].stuffName + '</td>';
                 table += '<td>' + data[i].stuffBdate + '</td>';
-                table += '<td>' + data[i].stuffEdate + '</td>';
+                table += '<td>' + data[i].stuffusage + '</td>';
                 table += '<td>' + data[i].stuffPrice + '</td>';
                 table += '<td>' + data[i].categoryName + '</td>';
                 table += '</tr>';
