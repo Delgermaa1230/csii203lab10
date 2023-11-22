@@ -14,7 +14,11 @@ if (isset($_GET['stuffid'])) {
     $selectedStuffId = intval($_GET['stuffid']); 
 
     if ($selectedStuffId >= 1 && $selectedStuffId <= 101) {
-        $sql = "SELECT * FROM stuffs WHERE stuffid = $selectedStuffId";
+        $sql = "SELECT s.stuffId, s.stuffName, s.stuffBdate, s.stuffEdate, s.stuffPrice, 
+        c.categoryFunction, c.categoryId, c.categoryName, 
+        u.Location, u.stuffusage
+       from stuffs s, categories c, stuffsusage u
+       where s.stuffid=u.stuffid and u.categoryid=c.categoryid and s.stuffId=$selectedStuffId";
         $result = $conn->query($sql);
 
         $data = [];

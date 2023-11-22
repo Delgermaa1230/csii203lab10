@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Display</title>
+    <title>Demi's</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -131,7 +131,7 @@
             var displayArea = $('#displayArea');
             displayArea.empty(); 
 
-            var table = '<table border="1"><tr><th>Эд зүйлийн дугаар</th><th>Эд зүйлийн нэр</th><th>Худалдаж авсан өдөр</th><th>Ашиглалтаас гарах өдөр</th><th>Үнэ</th></tr>';
+            var table = '<table border="1"><tr><th>Эд зүйлийн дугаар</th><th>Эд зүйлийн нэр</th><th>Худалдаж авсан өдөр</th><th>Ашиглалтаас гарах өдөр</th><th>Үнэ</th><th>Ангилал</th></tr>';
 
             for (var i = 0; i < data.length; i++) {
                 table += '<tr>';
@@ -140,12 +140,25 @@
                 table += '<td>' + data[i].stuffBdate + '</td>';
                 table += '<td>' + data[i].stuffEdate + '</td>';
                 table += '<td>' + data[i].stuffPrice + '</td>';
+                table += '<td>' + data[i].categoryName + '</td>';
                 table += '</tr>';
             }
 
             table += '</table>';
             displayArea.html(table);
         }
+        $.ajax({
+                url: 'details.php', 
+                type: 'GET',
+                data: { stuffid: selectedStuffId },
+                dataType: 'json',
+                success: function (data) {
+                    displayData(data);
+                },
+                error: function (error) {
+                    console.error('Өгөгдөл авахад алдаа гарлаа:', error);
+                }
+            });
     </script>
 
 </body>
